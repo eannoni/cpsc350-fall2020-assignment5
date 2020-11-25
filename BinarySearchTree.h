@@ -25,8 +25,8 @@ class BinarySearchTree {
 
         bool isEmpty();
         unsigned int getSize();
-        T getMin();
-        T getMax();
+        T* getMin();
+        T* getMax();
 
 
         TreeNode<T>* getSuccessor(TreeNode<T> *d); // d represents the node to be deleted
@@ -60,8 +60,8 @@ bool BinarySearchTree<T>::searchNode(T* value) {
     else {
         TreeNode<T> *current = root;
 
-        while(current->key != value) {
-            if(value < current->key)
+        while(*current->key != *value) {
+            if(*value < *current->key)
                 current = current->left;
             else
                 current = current->right;
@@ -88,7 +88,7 @@ void BinarySearchTree<T>::insertNode(T* value) {
         while(true) {
             parent = current;
 
-            if(value < current->key) {
+            if(*value < *current->key) {
                 current = current->left;
 
                 if(current == NULL) {
@@ -118,9 +118,9 @@ bool BinarySearchTree<T>::deleteNode(T* value) {
 
     // usual code to find a TreeNode
 
-    while(current->key != value) {
+    while(*current->key != *value) {
         parent = current;
-        if(value < current->key) {
+        if(*value < *current->key) {
             isLeftChild = true;
             current = current->left;
         } else {
@@ -202,7 +202,7 @@ template <typename T>
 void BinarySearchTree<T>::recPrint(TreeNode<T> *node) {
     if(node != NULL) {
         recPrint(node->left);
-        cout << node->key << endl;
+        cout << *node->key << endl;
         recPrint(node->right);
     }
 }
@@ -218,7 +218,21 @@ unsigned int BinarySearchTree<T>::getSize() {
 }
 
 template <typename T>
-T BinarySearchTree<T>::getMax() {
+T* BinarySearchTree<T>::getMin() {
+    TreeNode<T> *current = root;
+
+    if(isEmpty())
+        return NULL;
+
+    while(current->left != NULL) {
+        current = current->left;
+    }
+
+    return current->key;
+}
+
+template <typename T>
+T* BinarySearchTree<T>::getMax() {
     TreeNode<T> *current = root;
 
     if(isEmpty())
