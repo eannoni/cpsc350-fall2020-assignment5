@@ -14,7 +14,17 @@ Person::Person(int id, string name, string level) {
     this->level = level;
 }
 
+Person::Person(const Person& other) {
+    this->id = other.id;
+    this->name = other.name;
+    this->level = other.level;
+}
+
 Person::~Person() {}
+
+string Person::toString() const {
+    return "[Person] ID: " + to_string(id) + ", Name: " + name + ", Level: " + level;
+}
 
 bool Person::operator==(const Person& other) const {
     return (this->id == other.id);
@@ -33,6 +43,7 @@ bool Person::operator<(const Person& other) const {
 }
 
 ostream& operator<<(ostream& os, const Person& other) {
-    os << "Person: " << other.name << ", " << other.id << ", " << other.level;
+    string str = other.toString();
+    os << str;
     return os;
 }

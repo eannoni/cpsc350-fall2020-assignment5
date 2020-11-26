@@ -9,9 +9,12 @@ using namespace std;
 class Person {
 
     public:
-        Person(); // constructor
+        Person(); // default constructor
         Person(int id, string name, string level); // overloaded constructor
+        Person(const Person& other); // copy constructor
         ~Person(); // destructor
+
+        virtual string toString() const;
 
         // overloaded operators
         bool operator==(const Person& other) const;
