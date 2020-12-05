@@ -10,7 +10,7 @@ class Student : public Person {
         Student(); // default constructor
         Student(int id, string name, string level, string major, double gpa, int advisor); // overloaded constructor
         Student(const Student& other); // copy constructor
-        ~Student(); // destructor
+        virtual ~Student(); // destructor
 
         string toString() const override;
 

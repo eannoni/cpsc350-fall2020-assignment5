@@ -11,7 +11,7 @@ class Faculty : public Person {
         Faculty(); // default constructor
         Faculty(int id, string name, string level, string department, vector<int>* advisees); // overloaded constructor
         Faculty(const Faculty& other); // copy constructor
-        ~Faculty(); // destructor
+        virtual ~Faculty(); // destructor
 
         string toString() const override;
 

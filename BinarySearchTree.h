@@ -11,8 +11,9 @@ template <typename T>
 class BinarySearchTree {
 
     public:
-        BinarySearchTree();
-        ~BinarySearchTree();
+        BinarySearchTree(); // default constructor
+        BinarySearchTree(const BinarySearchTree<T>& other); // copy constructor
+        ~BinarySearchTree(); // destructor
 
         bool searchNode(T *value);
         void insertNode(T *value);
@@ -34,6 +35,8 @@ class BinarySearchTree {
     private:
         TreeNode<T> *root;
         unsigned int size;
+
+        void recCopy(TreeNode<T>* &copyTo, const TreeNode<T>* copyFrom) const; // used by copy constructor
 };
 
 #endif
@@ -45,6 +48,11 @@ template <typename T>
 BinarySearchTree<T>::BinarySearchTree() {
     root = NULL;
     size = 0;
+}
+
+template <typename T>
+BinarySearchTree<T>::BinarySearchTree(const BinarySearchTree<T>& other) {
+    recCopy(this->root, other.root);
 }
 
 template <typename T>
@@ -264,4 +272,16 @@ TreeNode<T>* BinarySearchTree<T>::getSuccessor(TreeNode<T> *d) { // d represents
         successor->right = d->right;
     }
     return successor;
+}
+
+template <typename T>
+void BinarySearchTree<T>::recCopy(TreeNode<T>* &copyTo, const TreeNode<T>* copyFrom) const
+{
+    if(copyFrom == NULL) {
+        copyTo = NULL;
+    } else {
+        copyTo = new TreeNode<T>(copyFrom->key);
+        recCopy(copyTo->left, copyFrom->left);
+        recCopy(copyTo->right, copyFrom->right);
+    }
 }

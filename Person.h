@@ -12,7 +12,7 @@ class Person {
         Person(); // default constructor
         Person(int id, string name, string level); // overloaded constructor
         Person(const Person& other); // copy constructor
-        ~Person(); // destructor
+        virtual ~Person(); // destructor
 
         virtual string toString() const;
 
