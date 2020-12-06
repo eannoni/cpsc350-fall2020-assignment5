@@ -157,7 +157,7 @@ void FileManager::writeFacultyFile() {
 void FileManager::recAddStudents(Student** arrStudents, int l, int r) {
     int m = (l + r) / 2;
     cout << "m (student): " << m << endl;
-    sim->addStudent(arrStudents[m]);
+    sim->addStudentFromFile(arrStudents[m]);
     if(l != r) {
         if(l != m)
             recAddStudents(arrStudents, l, m - 1);
@@ -169,7 +169,7 @@ void FileManager::recAddStudents(Student** arrStudents, int l, int r) {
 void FileManager::recAddFacultys(Faculty** arrFacultys, int l, int r) {
     int m = (l + r) / 2;
     cout << "m (faculty): " << m << endl;
-    sim->addFaculty(arrFacultys[m]);
+    sim->addFacultyFromFile(arrFacultys[m]);
     if(l != r) {
         if(l != m)
             recAddFacultys(arrFacultys, l, m - 1);

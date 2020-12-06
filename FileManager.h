@@ -23,7 +23,7 @@ class FileManager {
     private:
         fstream studentFile; // file to read/write from containing Student tree data
         fstream facultyFile; // file to read/write from containing Faculty tree data
-        Simulation* sim; // used to call AddStudent and AddFaculty methods from within Simulation
+        Simulation* sim; // used to call addStudentFromFile() and addFacultyFromFile() from within Simulation
 
         void readStudentFile();
         void readFacultyFile();

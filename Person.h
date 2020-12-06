@@ -10,7 +10,8 @@ class Person {
 
     public:
         Person(); // default constructor
-        Person(int id, string name, string level); // overloaded constructor
+        Person(int id); // id-only overloaded constructor
+        Person(int id, string name, string level); // fully overloaded constructor
         Person(const Person& other); // copy constructor
         virtual ~Person(); // destructor
 

@@ -8,6 +8,12 @@ Student::Student() {
     advisor = -1;
 }
 
+Student::Student(int id) : Person(id) {
+    major = "No major";
+    gpa = -1.0;
+    advisor = -1;
+}
+
 Student::Student(int id, string name, string level, string major, double gpa, int advisor) : Person(id, name, level) {
     this->major = major;
     this->gpa = gpa;

@@ -7,6 +7,16 @@ Faculty::Faculty() {
     this->advisees = new vector<int>();
 }
 
+Faculty::Faculty(int id) : Person(id) {
+    this->department = "No department";
+    this->advisees = new vector<int>();
+}
+
+Faculty::Faculty(int id, string name, string level, string department) : Person(id, name, level) {
+    this->department = department;
+    this->advisees = new vector<int>();
+}
+
 Faculty::Faculty(int id, string name, string level, string department, vector<int>* advisees) : Person(id, name, level) {
     this->department = department;
     this->advisees = new vector<int>(*advisees);

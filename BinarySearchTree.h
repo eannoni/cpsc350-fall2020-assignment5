@@ -16,6 +16,7 @@ class BinarySearchTree {
         ~BinarySearchTree(); // destructor
 
         bool searchNode(T *value);
+        T*   getNode(T *value);
         void insertNode(T *value);
         bool deleteNode(T *value);
 
@@ -79,6 +80,26 @@ bool BinarySearchTree<T>::searchNode(T* value) {
         }
     }
     return true;
+}
+
+template <typename T>
+T* BinarySearchTree<T>::getNode(T *value) {
+    if(isEmpty)
+        return NULL;
+    else {
+        TreeNode<T> *current = root;
+
+        while(*current->key != *value) {
+            if(*value < *current->key)
+                current = current->left;
+            else
+                current = current->right;
+
+            if(current == NULL)
+                return false;
+        }
+        return current;
+    }
 }
 
 template <typename T>

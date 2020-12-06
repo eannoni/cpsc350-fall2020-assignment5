@@ -14,6 +14,12 @@ Person::Person(int id, string name, string level) {
     this->level = level;
 }
 
+Person::Person(int id) {
+    this->id = id;
+    this->name = "no name";
+    this->level = "no level";
+}
+
 Person::Person(const Person& other) {
     this->id = other.id;
     this->name = other.name;
