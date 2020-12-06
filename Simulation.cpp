@@ -12,7 +12,7 @@ Simulation::Simulation()
 }
 
 // destructor
-Simulation::~Simulation();
+Simulation::~Simulation()
 {
     delete studentBST;
     delete facultyBST;
@@ -185,87 +185,63 @@ void Simulation::addFaculty()
 // delete a faculty given the id
 void Simulation::deleteFaculty()
 {
-    string facToDelete;
-    string facToTransfer;
-    int advisees;
+    int id = getInputID("Faculty");
+    Faculty* f = getFacultyByID(id);
 
-    cout << "Enter Faculty ID to be deleted: " << endl;
-    cin >> facToDelete;
-    cout << "Enter Faculty ID to transfer advisees to: " << endl;
-    cin >> facToTransfer;
-
-    Faculty currFaculty(stoi(facToDelete));
-    Faculty transferFaculty(stoi(facToTransfer));
-
-    /*if (facultyBST->searchNode(transferFaculty) && facultyBST->searchNode(facToDelete))
+    if (f->advisees->size() > 0)
     {
-    GenList<int> *rem = facultyBST->find(currFaculty).advisees;
-    while (rem->getSize() != 0)
-    {
-      int oldID = rem->removeFront();
-      Student facultyStudent = Student(oldID);
-      studentBST->find(facultyStudent).setAdvisor(stoi(facToTransfer));
-      facultyBST->find(transferFaculty).advisees->insertFront(oldID);
+      for (int i = 0; i < f->advisees->size(); ++i)
+      {
+        f->advisees->at(i)->changeStudentAdvisor();
+      }
     }
-    facultyBST->recDelete(currFaculty);
-    studentBSTImages->push(*studentBST);
-    facultyBSTImages->push(*facultyBST);
+
+    bool success = facultyBST->deleteNode(f);
+    if (success)
+    {
+        cout << "Faculty successfully deleted." << endl;
     }
     else
     {
-    cout << "There is no faculty with this ID number. " << endl;
-    } */
+        cout << "Faculty could not be deleted." << endl;
+        return;
+    }
+
+    saveCurrentTrees();
 }
 
 // change a student's advisor given the student id and the new faculty id
 void Simulation::changeStudentAdvisor()
 {
-    string studentID;
-    string newAdvisorID;
-    cout << "Enter Student ID:" << endl;
-    cin >> studentID;
-    cout << "Enter Advisor ID: " << endl;
-    cin >> newAdvisorID;
+    int sID = getInputID("Student");
+    Student* s = getStudentByID(sID);
 
-    Student currStudent(stoi(studentID));
-    Faculty newAdvisor(stoi(newAdvisorID));
-    /*
-    if (studentBST->searchNode(currStudent) && facultyBST->searchNode(newAdvisor))
+    int fID = getInputID("Faculty);")
+
+    if (s->advisor == fID)
     {
-    	studentBST->find(currStudent).setAdvisor(stoi(newAdvisorID)); // finds the student and gives them a new advisor
-    	facultyBST->find(newAdvisor).addAdvisor(stoi(studentID)); // vice versa
-    	facultyBST->find(studentBST->find(currStudent).newAdvisorID).deleteAdvisor(stoi(studentID)); // deletes this student from its former advisor's list
-    	studentBSTImages->push(*studentBST);
-    	facultyBSTImages->push(*facultyBST);
+      s->advisor = getInputID("Faculty"); //TODO: Make sure thi faculty exists
     }
-    else
-    	cout << "There is no faculty with this ID number. " << endl; */
+    saveCurrentTrees();
 }
 
 // remove an advisee from a faculty member given the ids
 void Simulation::removeAdvisee()
 {
-    string advisorID;
-    cout << "Enter Advisor ID: " << endl;
-    cin >> advisorID;
-    string studentID;
-    cout << "Enter Student ID: " << endl;
-    cin >> studentID;
+  int fID = getInputID("Faculty");
+  Faculty* f = getFacultyByID(id);
 
-    Student studentToDelete(stoi(studentID));
-    Faculty currFaculty(stoi(advisorID));
+  int sID = getInputID("Student");
+  Student* s = getStudentByID(sID);
 
-    if (studentBST->searchNode(studentToDelete) && facultyBST->searchNode(currFaculty))
+  for (int i = 0; i < f->advisees->size(); ++i)
+  {
+    if (f->advisees->at(i) == sID)
     {
-    //studentBST->find(studentToDelete).setAdvisor(0);
-    //facultyBST->find(studentBST->find(studentToDelete).advisorID).deleteFaculty(stoi(studentID));
-    studentBSTImages->push(*studentBST);
-    facultyBSTImages->push(*facultyBST);
+      f->advisees->erase(i);
     }
-    else
-    {
-    cout << "There is no student with that ID number. " << endl;
-    }
+  }
+  saveCurrentTrees();
 }
 
 // undo previous insertion/removal
@@ -277,7 +253,7 @@ void Simulation::rollback()
 // exit simulation
 void Simulation::exitSim()
 {
-
+  //maybe implement in main by breaking the loop and returning 0?
 }
 
 /* Private Functions */

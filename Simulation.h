@@ -27,9 +27,9 @@ class Simulation
     void displayFaculty(); // find and display faculty information given a faculty id
     void getStudentAdvisor(); // given a student id, print the name and info of their faculty advisor
     void getAdvisorStudents(); // given a faculty id, print ALL names and info of his/her advisees
-    void addStudent(); // add a new student
+    void addStudent(Student* student); // add a new student
     void deleteStudent(); // delete a student given the id
-    void addFaculty(); // add a new faculty
+    void addFaculty(Faculty* faculty); // add a new faculty
     void deleteFaculty(); // delete a faculty given the id
     void changeStudentAdvisor(); // change a student's advisor given the student id and the new faculty id
     void removeAdvisee(); // remove an advisee from a faculty member given the ids
@@ -40,8 +40,8 @@ class Simulation
 
     BinarySearchTree<Student> *studentBST;
     BinarySearchTree<Faculty> *facultyBST;
-    GenStack<BinarySearchTree<Student>> *studentTreeImages;
-    GenStack<BinarySearchTree<Faculty>> *facultyTreeImages;
+    GenStack<BinarySearchTree<Student>> *studentBSTImages;
+    GenStack<BinarySearchTree<Faculty>> *facultyBSTImages;
 
     private:
         Student* getStudentByID(int id); // returns a student from BST given an id
