@@ -7,7 +7,7 @@ Logan Jett
 2342344
 ljett@chapman.edu
 
-**I (Logan) was unable to work on this project as much as Eli due to other class commitments, please do not dock him points for errors in the Simulation header and cpp files, as it was my fault should any occur.**
+**I (Logan) was unable to work on this project as much as Eli due to other class commitments, please do not dock him points for errors in the Simulation header and cpp files, as it was my fault should any occur!**
 
 CPSC 350-01
 Assignment 5: Building a Database with Binary Search Trees
