@@ -23,12 +23,12 @@ Simulation::~Simulation()
 /* Used by FileManager */
 
 // adds Student from file to the BST
-void Simulation::addStudent(Student* student) {
+void Simulation::addStudentFromFile(Student* student) {
     studentBST->insertNode(student);
 }
 
 // adds Faculty from file to the BST
-void Simulation::addFaculty(Faculty* faculty) {
+void Simulation::addFacultyFromFile(Faculty* faculty) {
     facultyBST->insertNode(faculty);
 }
 
@@ -107,7 +107,7 @@ void Simulation::addStudent() {
     cin.clear();
     double gpa = stod(gpaStr); /* TODO: add error checking */
 
-
+    //while loop makes it so newStudent has issue being created since their is possibility of no advisor
     while(true) { /* TODO: clean up for better error checking */
         string studentAdvisor;
         cout << "Enter Student's Advisor ID: " << endl;
@@ -192,7 +192,7 @@ void Simulation::deleteFaculty()
     {
       for (int i = 0; i < f->advisees->size(); ++i)
       {
-        f->advisees->at(i)->changeStudentAdvisor();
+        f->advisees->at(i)->changeStudentAdvisor(); //FIXME
       }
     }
 
@@ -216,7 +216,7 @@ void Simulation::changeStudentAdvisor()
     int sID = getInputID("Student");
     Student* s = getStudentByID(sID);
 
-    int fID = getInputID("Faculty);")
+    int fID = getInputID("Faculty");
 
     if (s->advisor == fID)
     {
@@ -229,7 +229,7 @@ void Simulation::changeStudentAdvisor()
 void Simulation::removeAdvisee()
 {
   int fID = getInputID("Faculty");
-  Faculty* f = getFacultyByID(id);
+  Faculty* f = getFacultyByID(fId);
 
   int sID = getInputID("Student");
   Student* s = getStudentByID(sID);
