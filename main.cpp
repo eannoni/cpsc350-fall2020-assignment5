@@ -109,13 +109,9 @@ int main(int argc, char **argv) {
 
     fm->saveData();
 
-    cout << "Now exiting" << endl;
-
+    //we think there is an issue deleting, where the root node is set to null, and a segmentation fault occurs
     delete sim;
-
-        cout << "Really now exiting" << endl;
     delete fm;
 
-        cout << "Really really now exiting" << endl;
     return 0;
 }

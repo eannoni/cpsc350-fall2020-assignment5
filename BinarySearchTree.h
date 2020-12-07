@@ -215,12 +215,9 @@ bool BinarySearchTree<T>::deleteNode(T* value) {
 
 template <typename T>
 void BinarySearchTree<T>::recDelete(TreeNode<T> *node) {
-    cout << "here" << endl;
     if(node != NULL) {
-        cout << "now here" << endl;
         //cout << "deleting node " << *node->key << endl;
         recDelete(node->left);
-        cout << "woah! Here" << endl;
         recDelete(node->right);
         delete node;
     }

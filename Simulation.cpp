@@ -95,7 +95,8 @@ void Simulation::addStudent() {
 
     string name;
     cout << "Enter Student's Name: " << endl;
-    cin >> name;
+    cin.ignore();
+    getline(cin, name);
     cin.clear();
 
     string level;
@@ -105,7 +106,8 @@ void Simulation::addStudent() {
 
     string major;
     cout << "Enter Student's Major: " << endl;
-    cin >> major;
+    cin.ignore();
+    getline(cin, major);
     cin.clear();
 
     string gpaStr;
@@ -171,7 +173,8 @@ void Simulation::addFaculty()
 
     string name;
     cout << "Enter Faculty's Name: " << endl;
-    cin >> name;
+    cin.ignore();
+    getline(cin, name);
     cin.clear();
 
     string level;
@@ -181,7 +184,8 @@ void Simulation::addFaculty()
 
     string department;
     cout << "Enter Faculty's Department: " << endl;
-    cin >> department;
+    cin.ignore();
+    getline(cin, name);
     cin.clear();
 
     Faculty* f = new Faculty(id, name, level, department);
