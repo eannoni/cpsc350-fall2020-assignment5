@@ -30,7 +30,7 @@ Source files:
 
 Compile/run commands:
     - make all
-    - ./assignment5.exe *file name*
+    - ./assignment5.exe
 
 Errors:
     - We believe there to be an issue when deleting the tree images from the stack. Sometimes, this leads to a segmentation fault when exiting after completing a operation. We tested removing the deletions at the end of main.cpp, and were presented with memory leaks, we were unsure of how to fix this.
@@ -40,3 +40,4 @@ References:
     - http://www.cplusplus.com/reference/vector/vector/
     - https://stackoverflow.com/questions/16098362/how-to-deep-copy-a-binary-tree
     - geeksforgeeks.org
+    - https://www.youtube.com/watch?v=mS9755gF66w&ab_channel=TheCherno
