@@ -32,7 +32,7 @@ TreeNode<T>::TreeNode() {
 
 template <typename T>
 TreeNode<T>::TreeNode(T *value) {
-    key = value;
+    key = new T(*value);
     left = NULL;
     right = NULL;
 }
