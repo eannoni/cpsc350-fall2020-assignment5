@@ -29,7 +29,6 @@ void FileManager::loadData() {
 // converts data from sTree and fTree and writes to files
 void FileManager::saveData() {
     openFiles(true);
-    cout << "Debug 1" << endl;
 
     // write Student data from Simulation BST inorder to file
     writeStudentFile();
@@ -37,11 +36,7 @@ void FileManager::saveData() {
     // write Faculty data from Simulation BST inorder to file
     writeFacultyFile();
 
-    cout << "Debug 4" << endl;
-
     closeFiles();
-
-    cout << "Debug 5" << endl;
 }
 
 void FileManager::readStudentFile() {
@@ -134,7 +129,6 @@ void FileManager::readFacultyFile() {
 void FileManager::writeStudentFile() {
     studentFile << to_string(sim->studentBST->getSize()) << endl;
     while(!sim->studentBST->isEmpty()) {
-        cout << "Debug 2" << endl;
         Student* s = sim->studentBST->getMin();
         string formattedStudent = getFormattedStudent(*s);
         studentFile << formattedStudent;
@@ -145,7 +139,6 @@ void FileManager::writeStudentFile() {
 void FileManager::writeFacultyFile() {
     facultyFile << to_string(sim->facultyBST->getSize()) << endl;
     while(!sim->facultyBST->isEmpty()) {
-        cout << "Debug 3" << endl;
         Faculty* f = sim->facultyBST->getMin();
         string formattedFaculty = getFormattedFaculty(*f);
         facultyFile << formattedFaculty;
@@ -156,7 +149,6 @@ void FileManager::writeFacultyFile() {
 // adds Students to Simulation BST in a balanced order
 void FileManager::recAddStudents(Student** arrStudents, int l, int r) {
     int m = (l + r) / 2;
-    cout << "m (student): " << m << endl;
     sim->addStudentFromFile(arrStudents[m]);
     if(l != r) {
         if(l != m)
@@ -168,7 +160,6 @@ void FileManager::recAddStudents(Student** arrStudents, int l, int r) {
 // adds Faculties to Simulation BST in a balanced order
 void FileManager::recAddFacultys(Faculty** arrFacultys, int l, int r) {
     int m = (l + r) / 2;
-    cout << "m (faculty): " << m << endl;
     sim->addFacultyFromFile(arrFacultys[m]);
     if(l != r) {
         if(l != m)
