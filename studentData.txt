@@ -1,4 +1,4 @@
-9
+10
 1
 Jane
 Freshman
@@ -53,3 +53,9 @@ Cooper
 History
 3.300000
 3
+123
+Logan
+Sophomore
+Computer Science
+3.700000
+1
