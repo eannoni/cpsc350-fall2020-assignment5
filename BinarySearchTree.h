@@ -96,9 +96,9 @@ T* BinarySearchTree<T>::getNode(T *value) {
                 current = current->right;
 
             if(current == NULL)
-                return false;
+                return NULL;
         }
-        return current;
+        return current->key;
     }
 }
 
