@@ -34,7 +34,6 @@ class Simulation
     void changeStudentAdvisor(); // change a student's advisor given the student id and the new faculty id
     void removeAdvisee(); // remove an advisee from a faculty member given the ids
     void rollback(); // undo previous insertion/removal
-    void exitSim(); // exit simulation
 
 
 
@@ -48,6 +47,7 @@ class Simulation
         Faculty* getFacultyByID(int id); // returns a faculty from BST given an id
         int getInputID(string type); // gets id from cin (type: "Student" or "Faculty")
         void saveCurrentTrees(); // saves current tree data into the stacks
+        bool changeStudentAdvisor(int sID); // changes a student's advisor given the student id
 };
 
 #endif
