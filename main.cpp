@@ -109,8 +109,13 @@ int main(int argc, char **argv) {
 
     fm->saveData();
 
+    cout << "Now exiting" << endl;
+
     delete sim;
+
+        cout << "Really now exiting" << endl;
     delete fm;
 
+        cout << "Really really now exiting" << endl;
     return 0;
 }
