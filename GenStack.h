@@ -1,7 +1,7 @@
 using namespace std;
 
-template <class Type> class GenStack
-{
+template <class T>
+class GenStack {
   public:
 
     //constructors
@@ -12,9 +12,9 @@ template <class Type> class GenStack
     ~GenStack();
 
     //helpers
-    void push(Type p);
-    Type peek(); //will return top element
-    Type pop(); //will remove and return top element
+    void push(T* p);
+    T* peek(); //will return top element
+    T* pop(); //will remove and return top element
     void resize(); //increases the size by creating new stack
     bool isEmpty(); //checks if stack is empty
     bool isFull(); //checks if stack is full
@@ -26,70 +26,73 @@ template <class Type> class GenStack
     int top;
 
     //pointer to the stack
-    Type *stack;
+    T** stack;
 
   private:
 };
 
-template <class Type>
-GenStack<Type>::GenStack()
+template <class T>
+GenStack<T>::GenStack()
 {
-  stack = new Type[1];
+  stack = new T*[1];
   size = 1;
   top = -1;
 }
 
-template <class Type>
-GenStack<Type>::GenStack(int s)
+template <class T>
+GenStack<T>::GenStack(int s)
 {
-  stack = new Type[s];
+  stack = new T*[s];
   size = s;
   top = -1;
 }
 
-template <class Type>
-GenStack<Type>::~GenStack()
+template <class T>
+GenStack<T>::~GenStack()
 {
-  delete stack;
+    for(int i = 0; i < size; ++i) {
+        delete[] stack[i];
+    }
+    delete[] stack;
 }
 
-template <class Type>
-void GenStack<Type>::push(Type p)
+template <class T>
+void GenStack<T>::push(T* p)
 {
-  if (!this->isFull())
+  if (!isFull())
   {
     stack[++top] = p;
   }
   else
   {
-    this->resize();
+    resize();
     stack[++top] = p;
   }
 }
 
-template <class Type>
-Type GenStack<Type>::peek()
+template <class T>
+T* GenStack<T>::peek()
 {
-  if (!this->isEmpty())
+  if (!isEmpty())
   {
     return stack[top];
   }
 }
 
-template <class Type>
-Type GenStack<Type>::pop()
+template <class T>
+T* GenStack<T>::pop()
 {
-  if (!this->isEmpty())
+  if (!isEmpty())
   {
     return stack[top--];
   }
 }
 
-template <class Type>
-void GenStack<Type>::resize()
+template <class T>
+void GenStack<T>::resize()
 {
   int biggerSize = size++;;
-  Type* biggerStack = new Type[biggerSize];
+  T** biggerStack = new T*[biggerSize];
   for (int i = 0; i < size; ++i)
   {
     biggerStack[i] = stack[i];
@@ -97,8 +100,8 @@ void GenStack<Type>::resize()
   stack = biggerStack;
 }
 
-template <class Type>
-bool GenStack<Type>::isEmpty()
+template <class T>
+bool GenStack<T>::isEmpty()
 {
   bool isEmpty;
   if (top == -1)
@@ -113,8 +116,8 @@ bool GenStack<Type>::isEmpty()
   return isEmpty;
 }
 
-template <class Type>
-bool GenStack<Type>::isFull()
+template <class T>
+bool GenStack<T>::isFull()
 {
   bool isFull;
   if (top == size - 1)
