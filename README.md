@@ -3,7 +3,7 @@ Eli Annoni
 2348182
 annoni@chapman.edu
 
-Logan Jett
+Logan Jett (Used all 3 Late Days)
 2342344
 ljett@chapman.edu
 
