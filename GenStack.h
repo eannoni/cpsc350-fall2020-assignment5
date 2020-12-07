@@ -91,7 +91,7 @@ T* GenStack<T>::pop()
 template <class T>
 void GenStack<T>::resize()
 {
-  int biggerSize = size++;;
+  int biggerSize = size++;
   T** biggerStack = new T*[biggerSize];
   for (int i = 0; i < size; ++i)
   {
