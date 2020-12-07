@@ -107,25 +107,20 @@ void Simulation::addStudent() {
     cin.clear();
     double gpa = stod(gpaStr); /* TODO: add error checking */
 
-    //while loop makes it so newStudent has issue being created since their is possibility of no advisor
-    while(true) { /* TODO: clean up for better error checking */
-        string studentAdvisor;
-        cout << "Enter Student's Advisor ID: " << endl;
-        cin >> studentAdvisor;
-        cin.clear();
-        int advisor = stoi(studentAdvisor); /* TODO: add error checking */
+    int fID = getInputID("Faculty");
+    Faculty* advisor = getFacultyByID(fID);
 
+    while(advisor->advisees->size() > 0) { /* TODO: clean up for better error checking */
         if (facultyBST->searchNode(advisor)) {
             break;
         } else {
             cout << "There is no faculty with this ID number; try again. " << endl;
         }
     }
-    Student* newStudent = new Student(id, name, level, major, gpa, advisor); /* TODO: add error checking */
+    Student* newStudent = new Student(id, name, level, major, gpa, fID); /* TODO: add error checking */
     studentBST->insertNode(newStudent);
     //add student to advisor list
-    Faculty* f = getFacultyByID(advisor);
-    f->advisees->push_back(id);
+    advisor->advisees->push_back(id);
 
     saveCurrentTrees();
 }
@@ -148,7 +143,7 @@ void Simulation::deleteStudent() {
     Faculty* f = getFacultyByID(advisor);
     for(int i = 0; i < f->advisees->size(); ++i) {
         if(id == f->advisees->at(i)) {
-            f->advisees->erase(i);
+          f->advisees->erase(f->advisees->begin() + i);
             break;
         }
     }
@@ -194,6 +189,7 @@ void Simulation::deleteFaculty()
       {
         f->advisees->at(i)->changeStudentAdvisor(); //FIXME
       }
+      f->advisees->clear();
     }
 
     bool success = facultyBST->deleteNode(f);
@@ -229,7 +225,7 @@ void Simulation::changeStudentAdvisor()
 void Simulation::removeAdvisee()
 {
   int fID = getInputID("Faculty");
-  Faculty* f = getFacultyByID(fId);
+  Faculty* f = getFacultyByID(fID);
 
   int sID = getInputID("Student");
   Student* s = getStudentByID(sID);
@@ -238,7 +234,7 @@ void Simulation::removeAdvisee()
   {
     if (f->advisees->at(i) == sID)
     {
-      f->advisees->erase(i);
+      f->advisees->erase(f->advisees->begin() + i);
     }
   }
   saveCurrentTrees();
@@ -300,7 +296,8 @@ int Simulation::getInputID(string type) {
 }
 
 // saves current tree data into the stacks
-void Simulation::saveCurrentTrees() {
+void Simulation::saveCurrentTrees()
+{
 
     if(studentBSTImages->isFull()) {
         studentBSTImages->
